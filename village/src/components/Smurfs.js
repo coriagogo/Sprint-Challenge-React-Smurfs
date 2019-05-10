@@ -13,20 +13,9 @@ class Smurfs extends Component {
   render() {
     return (
       <div className="Smurfs">
-        <h1>Smurf Village</h1>
-        <ul>
-          {this.props.smurfs.map(smurf => {
-            return (
-              <Smurf
-                name={smurf.name}
-                id={smurf.id}
-                age={smurf.age}
-                height={smurf.height}
-                key={smurf.id}
-              />
-            );
-          })}
-        </ul>
+        {this.props.smurfs.map(smurf => (
+          <SmurfDetails key={smurf.id} smurf={smurf} deleteSmurf={this.props.deleteSmurf} />
+        ))}
       </div>
     );
   }
@@ -35,5 +24,21 @@ class Smurfs extends Component {
 Smurf.defaultProps = {
  smurfs: [],
 };
+
+function SmurfDetails(props) {
+  const { name, age, height, id } = props.smurf;
+  return (
+    <div classname="smurf-card">
+      {name}
+      <div className="smurf-age">
+        Age: {age} smurf years old
+      </div>
+      <div className="smurf-height">
+        Height: {height}
+      </div>
+      <button onClick={() => props.deleteSmurf(id)}>X</button>
+    </div>
+  )
+}
 
 export default Smurfs;
