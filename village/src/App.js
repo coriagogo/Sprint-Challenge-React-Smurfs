@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -26,6 +26,15 @@ class App extends Component {
       })
   }
 
+    addSmurf = smurf => {
+      axios
+        .post('http://localhost:3333/smurfs', smurf)
+        .then(res => {
+          this.setState({ smurfs: res.data });
+          this.props.history.push('/');
+        })
+        .catch(err => console.log(err));
+    }
  
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
@@ -33,12 +42,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/smurf-form">
-            <SmurfForm />
-          </Route>
-          
-            
-         
+
+        <div className="app-nav">
+          <NavLink exact to="/">Home</NavLink>
+          <NavLink to="/smurf-form">Add Smurf</NavLink>
+        </div>
+        <Route 
+          path="/smurf-form"
+          render={props => (
+            <SmurfForm
+            {...props}
+            addSmurf={this.addSmurf}
+            />
+          )}
+        />     
         
         <Route
           exact
