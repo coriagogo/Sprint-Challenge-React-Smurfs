@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy|Roboto');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(./images/smurf-village.jpg);
+  background-size: cover;
+
 }

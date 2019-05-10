@@ -1,5 +1,43 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import styled from 'styled-components';
+
+const SmurfInput = styled.div`
+  text-align: center;
+    color: white;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 20px;
+`
+
+const FormStyles = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 25%;    
+    margin: 0 auto;    
+
+    input {
+        background-color: #ffffff87;
+        font-size: 16px;
+        text-align: center;
+        height: 30px;
+        margin: 5px;
+        
+        ::placeholder {
+          font-family: 'Roboto', sans-serif;
+          letter-spacing: 2px;
+            color: black;
+            font-weight: bold;
+        }
+    }
+`
+
+const AddButton = styled.button`
+  cursor: pointer;
+  margin: 5px auto;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 25px;
+  padding: 8px 5px 4px 5px;
+  border-radius: 10px;
+`
 
 class SmurfForm extends Component {
   state = {
@@ -29,8 +67,9 @@ class SmurfForm extends Component {
 
   render() {
     return (
-      <div className="SmurfForm">
-        <form onSubmit={this.handleSubmit}>
+      <SmurfInput>
+        Add A Smurf
+        <FormStyles onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleInputChange}
             placeholder="name"
@@ -49,9 +88,9 @@ class SmurfForm extends Component {
             value={this.state.smurf.height}
             name="height"
           />
-          <button onClick={this.addSmurf}>Add to the village</button>
-        </form>
-      </div>
+          <AddButton onClick={this.addSmurf}>Add to the village</AddButton>
+        </FormStyles>
+      </SmurfInput>
     );
   }
 }

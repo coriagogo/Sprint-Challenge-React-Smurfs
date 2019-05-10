@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
 import { Route, NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import axios from 'axios';
-
 
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
+
+
+const AppStyles = styled.div`
+ 
+  h1 {
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    color: white;
+    font-size: 75px;
+    letter-spacing: 5px;
+    text-shadow: 4px 6px 0px rgba(0,0,0,0.2);
+  
+  }
+`
+
+const NavStyles = styled.div`
+  font-family: 'Luckiest Guy', cursive;
+  text-align: right;
+  margin: 20px 20px 0 0;
+  font-size: 25px;
+  a {
+    text-decoration: none;
+    color: white;;
+    padding: 0 10px;
+  }
+`
+
 
 class App extends Component {
   constructor(props) {
@@ -53,12 +80,14 @@ class App extends Component {
   // You'll need to make sure you have the right properties on state and pass them down to props.
   render() {
     return (
-      <div className="App">
-
-        <div className="app-nav">
+      <AppStyles>
+        
+        <NavStyles>
           <NavLink exact to="/">Home</NavLink>
           <NavLink to="/smurf-form">Add Smurf</NavLink>
-        </div>
+        </NavStyles>
+
+        <h1>Smurf Village</h1>
         <Route 
           path="/smurf-form"
           render={props => (
@@ -81,7 +110,7 @@ class App extends Component {
           )}
         />
         
-      </div>
+      </AppStyles>
     );
   }
 }
